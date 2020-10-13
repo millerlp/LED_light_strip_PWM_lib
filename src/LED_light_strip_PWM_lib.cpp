@@ -3,7 +3,7 @@
 // Functions for use with a MusselBedHeater RevF board that will 
 // drive PWM LED light strips (Govee brand) in a common anode arrangement
 
-#include "LED_light_strip_PWM.h"
+#include "LED_light_strip_PWM_lib.h"
 
 //-------------------------------------------------------------------
 // Initialize the onboard RGB LED on the MusselBedHeater circuit board

@@ -4,8 +4,8 @@
 // drive PWM LED light strips (Govee brand) in a common anode arrangement
 
 
-#ifndef LED_light_strip_PWM_H
-#define LED_light_strip_PWM_H
+#ifndef LED_light_strip_PWM_lib_H
+#define LED_light_strip_PWM_lib_H
 
 
 #include <Arduino.h> // to get access to pinMode, digitalRead etc functions
