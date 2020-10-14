@@ -46,6 +46,6 @@ class ONBOARDLED{
 // scaling if #define LOGFADE is specified in the program
 void convertHSV(int h, double s, double v, double rscale, uint16_t &rOut, uint16_t &gOut, uint16_t &bOut);
 
-void mysetpwm(Adafruit_PWMServoDriver &pwm, int RedChannel, int GreenChannel, int BlueChannel, uint16_t maxbrightnessRed, uint16_t maxbrightnessGreen, uint16_t maxbrightnessBlue);
+void mysetpwm(Adafruit_PWMServoDriver &pwm, int RedChannel, int GreenChannel, int BlueChannel, uint16_t maxbrightnessRed, uint16_t maxbrightnessGreen, uint16_t maxbrightnessBlue, double rscale);
 
 #endif /* LED_light_strip_PWM_H */

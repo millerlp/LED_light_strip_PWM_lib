@@ -194,22 +194,30 @@ void convertHSV(int h, double s, double v, double rscale, uint16_t &rOut, uint16
   uint16_t red=constrain((int)4096*r,0,4096);
   uint16_t green=constrain((int)4096*g,0,4096);
   uint16_t blue=constrain((int)4096*b,0,4096);
-#ifdef LOGFADE  
+//#ifdef LOGFADE
   // Map values into non-linear space
-   rOut = pow(2,(red/rscale)) - 1;
-   gOut = pow(2,(green/rscale)) - 1;
-   bOut = pow(2,(blue/rscale)) - 1;
-#else
+//   rOut = pow(2,(red/rscale)) - 1;
+//   gOut = pow(2,(green/rscale)) - 1;
+//   bOut = pow(2,(blue/rscale)) - 1;
+//#else
   rOut = red;
   gOut = green;
   bOut = blue;
-#endif
+//#endif
 }
 
 
 // Function to take care of updating all 3 color channels on a strip of LEDs
 // via a PCA9685 PWM chip
-void mysetpwm(Adafruit_PWMServoDriver &pwm, int RedChannel, int GreenChannel, int BlueChannel, uint16_t maxbrightnessRed, uint16_t maxbrightnessGreen, uint16_t maxbrightnessBlue) {
+void mysetpwm(Adafruit_PWMServoDriver &pwm, int RedChannel, int GreenChannel, int BlueChannel, uint16_t maxbrightnessRed, uint16_t maxbrightnessGreen, uint16_t maxbrightnessBlue, double rscale) {
+    
+#ifdef LOGFADE
+    // Map values into non-linear space
+    maxbrightnessRed = pow(2,(maxbrightnessRed/rscale)) - 1;
+    maxbrightnessGreen = pow(2,(maxbrightnessGreen/rscale)) - 1;
+    maxbrightnessBlue = pow(2,(maxbrightnessBlue/rscale)) - 1;
+#endif
+    
 	pwm.setPWM(RedChannel, 0, maxbrightnessRed);
 	pwm.setPWM(GreenChannel, 0, maxbrightnessGreen);
 	pwm.setPWM(BlueChannel, 0, maxbrightnessBlue);
