@@ -141,7 +141,7 @@ void ONBOARDLED::writeHSV(int h, double s, double v, double R255) {
 // where pwmIntervals is the number of steps you want in the PWM scale, and
 // 4096 is the maximum PWM value (for a 12-bit resolution PWM chip)
 
-void convertHSV(int h, double s, double v, double rscale, uint16_t &rOut, uint16_t &gOut, uint16_t &bOut) {
+void convertHSV(int h, double s, double v, uint16_t &rOut, uint16_t &gOut, uint16_t &bOut) {
   //this is the algorithm to convert from RGB to HSV
   // See https://github.com/FastLED/FastLED/wiki/Pixel-reference#chsv for info on the
   // HSV set
@@ -223,3 +223,40 @@ void mysetpwm(Adafruit_PWMServoDriver &pwm, int RedChannel, int GreenChannel, in
 	pwm.setPWM(BlueChannel, 0, maxbrightnessBlue);
 }
 
+
+//-------------------------------------------------------------
+void printTimeSerial(DateTime now){
+//------------------------------------------------
+// printTime function takes a DateTime object from
+// the real time clock and prints the date and time 
+// to the serial monitor. 
+	Serial.print(now.year(), DEC);
+    Serial.print('-');
+	if (now.month() < 10) {
+		Serial.print(F("0"));
+	}
+    Serial.print(now.month(), DEC);
+    Serial.print('-');
+    if (now.day() < 10) {
+		Serial.print(F("0"));
+	}
+	Serial.print(now.day(), DEC);
+    Serial.print(' ');
+	if (now.hour() < 10){
+		Serial.print(F("0"));
+	}
+    Serial.print(now.hour(), DEC);
+    Serial.print(':');
+	if (now.minute() < 10) {
+		Serial.print("0");
+	}
+    Serial.print(now.minute(), DEC);
+    Serial.print(':');
+	if (now.second() < 10) {
+		Serial.print(F("0"));
+	}
+    Serial.print(now.second(), DEC);
+	// You may want to print a newline character
+	// after calling this function i.e. Serial.println();
+
+}
